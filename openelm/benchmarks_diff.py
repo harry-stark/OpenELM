@@ -117,7 +117,6 @@ def main(cfg):
     end_of_diff = re.compile("\n[^ +-@]+")
     codes = []
     for _ in tqdm(range(num_batches), desc=f"Running benchmark with {cfg.n_bugs} bugs"):
-        set_seed(torch.random.seed())
         tokens = model.generate(
             **mutated_encoding,
             do_sample=True,

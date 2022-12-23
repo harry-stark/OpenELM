@@ -147,7 +147,6 @@ def run_benchmark(cfg):
         text.append(tokenizer.batch_decode(mutated_encoding.input_ids[:, i]))
     num_batches = cfg.n_trials // cfg.batch_size
     for i in tqdm(range(num_batches), desc=f"Running benchmark with {cfg.n_bugs} bugs"):
-        set_seed(torch.random.seed())
         completions = sample(cfg, model, tokenizer, mutated_encoding, add_def=True)
         truncations = map(truncate, completions)
         if i == 0:
